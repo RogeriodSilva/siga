@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Minha Extensão",
+  "name": "test",
   "version": "1.0.0",
   "side_panel": {
     "default_path": "index.html"
