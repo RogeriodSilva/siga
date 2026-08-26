@@ -1,53 +1,30 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import FinalizarEventos from "../FinalizarEventos";
 import { Home, BookCheck, UserRoundPlus } from "lucide-react";
+import Welcome from "../Welcome";
 
 export default function App() {
+      const MenusList = [
+            { icon: <Home />, value: "home", render: (<Welcome />) },
+            {
+                  icon: <BookCheck />,
+                  value: "finalizarEvento",
+                  render: (<FinalizarEventos />),
+            },
+      ];
+
       return (
-            <Tabs defaultValue="home" className="w-full">
+            <Tabs  className="w-full">
+
                   <TabsList className="w-full flex justify-center items-center">
-                        <TabsTrigger value="home">
-                              <Home />
-                        </TabsTrigger>
-                        <TabsTrigger value="finalizar_eventos">
-                              <BookCheck />
-                        </TabsTrigger>
-                        <TabsTrigger value="inserir_tarefas">
-                              <UserRoundPlus />
-                        </TabsTrigger>
+                        {MenusList.map((m)=> (
+                              <TabsTrigger key={m.value} value={m.value}>{m.icon}</TabsTrigger>
+                        ))}
                   </TabsList>
 
-                  <TabsContent value="finalizar_eventos">
-                        <FinalizarEventos />
-                  </TabsContent>
-                  <TabsContent value="home">
-                        Lorem ipsum dolor, sit amet consectetur adipisicing
-                        elit. Quaerat, sapiente saepe non tempora repudiandae
-                        culpa ut ab pariatur atque esse dignissimos iste ad vel
-                        nihil omnis ex dolorem iusto voluptate?
-                  </TabsContent>
-
-                  <TabsContent value="inserir_tarefas">
-                        <div className="flex flex-col space-y-4 p-2">
-                              <h1>Inserir nas tarefas</h1>
-                              <p>
-                                    Lorem ipsum dolor sit amet consectetur
-                                    adipisicing elit. Quo quia expedita, itaque,
-                                    quam, molestias debitis adipisci nesciunt
-                                    quae repellat consequatur sed assumenda.
-                                    Iusto, est libero obcaecati adipisci odio
-                                    sunt rerum.
-                              </p>
-                              <p>
-                                    Lorem ipsum dolor sit amet consectetur
-                                    adipisicing elit. Quo quia expedita, itaque,
-                                    quam, molestias debitis adipisci nesciunt
-                                    quae repellat consequatur sed assumenda.
-                                    Iusto, est libero obcaecati adipisci odio
-                                    sunt rerum.
-                              </p>
-                        </div>
-                  </TabsContent>
+                  {MenusList.map((m)=>{(
+                        <TabsContent key={m.value.concat("_content")} value={m.value}>{m.render}</TabsContent>
+                  )})}
             </Tabs>
       );
 }
