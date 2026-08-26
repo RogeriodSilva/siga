@@ -1,7 +1,7 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import FinalizarEventos from "../FinalizarEventos";
 import { BookCheck } from "lucide-react";
-import { use, useState } from "react";
+import { useState } from "react";
 import Loading from "../Loading";
 import useLocalStorageState from "use-local-storage-state";
 
