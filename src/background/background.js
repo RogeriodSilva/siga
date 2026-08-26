@@ -1,8 +1,16 @@
-const actionHandleMessage = {};
+const actionHandleMessage = {
+      getUsername: async (param) => {
+            console.log("AAAAAAAAAA");
+
+            return { value: 1 + 1 };
+      },
+};
 
 //
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       const { event, param } = message;
+
+      console.log(event, param, 'oi')
 
       async () => {
             try {
