@@ -1,23 +1,26 @@
-const currentTab = async () => {
-  const [tab] = await chrome.tabs.query({ active: true });
-
-  return tab;
+const actionHandleMessage = {
+    async queryEvent() {
+        alert("ok!");
+    },
 };
 
-chrome.runtime.onMessage.addListener(async ({ event, param }) => {
-  const tab = await currentTab();
+//
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+    const { event, param } = message;
 
-  chrome.scripting.executeScript({
-    target: { tabId: tab.id },
-    world: "MAIN",
-    func: () => {
-      console.log("pagiaaaaaaaaaaaaaaaa");
-      alert("OKKKKKKKKKKK");
-    },
-  });
+    async () => {
+        try {
+            const resultado = await actionHandlers[event]();
+
+            sendResponse({ sucess: true, data: { value: 1 + 1 } });
+        } catch (error) {
+            console.error(`[OnMessageError] ${error}`);
+            sendResponse({ sucess: false, erro: error.message });
+        }
+    };
 });
 
 //
 chrome.sidePanel
-  .setPanelBehavior({ openPanelOnActionClick: true })
-  .catch((error) => console.error(error));
+    .setPanelBehavior({ openPanelOnActionClick: true })
+    .catch((error) => console.log(error));

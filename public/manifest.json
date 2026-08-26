@@ -8,6 +8,13 @@
   "background": {
     "service_worker": "background.js"
   },
-  "permissions": ["storage", "scripting", "sidePanel", "tabs", "activeTab"],
+  "permissions": [
+    "tabs",
+    "sidePanel",
+    "scripting",
+    "activeTab",
+    "nativeMessaging",
+    "webNavigation"
+  ],
   "host_permissions": ["http://*/*", "https://*/*"]
 }
