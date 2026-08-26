@@ -1,0 +1,13 @@
+{
+  "manifest_version": 3,
+  "name": "Minha Extensão",
+  "version": "1.0.0",
+  "side_panel": {
+    "default_path": "index.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": ["storage", "scripting", "sidePanel", "tabs", "activeTab"],
+  "host_permissions": ["http://*/*", "https://*/*"]
+}
