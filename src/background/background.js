@@ -50,14 +50,11 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
     (async () => {
         try {
-            const { currentTab } = await chrome.storage.local.get("currentTab");
 
-            const [result] = await chrome.scripting.executeScript({
-                target: { tabId: currentTab.tab.id },
-                world: "MAIN",
-                func: handleSigaFunctions[event],
-                args: [param],
-            });
+            const { currentTab } = await chrome.storage.local.get("currentTab");
+            const frame = currentTab.frames.filter(fr => SIGAEvents.framesFindThis(fr, ['ebfFlowExecute', 'ebfListParamsCreate'], parent))
+
+            console.log(frame)
 
             sendResponse({ status: "success", data: result });
         } catch (error) {
