@@ -115,7 +115,3 @@ const handleUpdateStorage = async (param) => {
 chrome.tabs.onActivated.addListener(handleUpdateStorage);
 // chrome.tabs.onUpdated.addListener(handleUpdateStorage);
 
-//Abre e fecha o SidePanel da extensão
-chrome.sidePanel
-    .setPanelBehavior({ openPanelOnActionClick: true })
-    .catch((error) => console.log(error));

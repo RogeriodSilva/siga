@@ -7,18 +7,17 @@ export default defineConfig({
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {
-      "@": resolve(__dirname, "./src"),
+      "@": resolve(import.meta.dirname, "./src"),
     },
   },
   build: {
     rollupOptions: {
       input: {
-        // Apontando para o index.html na raiz do projeto
-        popup: resolve(__dirname, "index.html"),
-        background: resolve(__dirname, "src/background/background.js"),
+        popup: resolve(import.meta.dirname, "index.html"),
+        background: resolve(import.meta.dirname, "src/background/chrome.mjs"),
       },
       output: {
-        entryFileNames: "[name].js",
+        entryFileNames: "[name].mjs",
         assetFileNames: "assets/[name].[ext]",
       },
     },
